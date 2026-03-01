@@ -1,4 +1,4 @@
-# 🏗️ Modern SQL Data Warehouse Project
+# Modern SQL Data Warehouse Project
 
 ## 📌 Overview
 
@@ -136,37 +136,6 @@ The warehouse enables:
 The solution transforms raw transactional data into decision-support analytics. 
 
 ---
-
-## 🚀 Key Features
-
-✔️ End-to-end data warehouse implementation  
-✔️ Medallion layered architecture  
-✔️ Star schema design  
-✔️ Surrogate key generation  
-✔️ Data transformation & cleansing  
-✔️ Business-ready analytics queries  
-✔️ Scalable and modular structure  
-
----
-
-## 📂 Project Structure
-
-
-/data
-/scripts
-├── create_tables.sql
-├── bronze_layer.sql
-├── silver_layer.sql
-├── gold_layer.sql
-├── fact_tables.sql
-├── dimension_tables.sql
-└── analytics_queries.sql
-/diagrams
-README.md
-
-
----
-
 ## 🧠 Skills Demonstrated
 
 - Data Warehouse Architecture Design  
@@ -175,17 +144,6 @@ README.md
 - Dimensional Modeling  
 - Query Optimization  
 - Business Intelligence Concepts  
-
----
-
-## 📌 Future Improvements
-
-- Integration with Power BI  
-- Automation using SQL Server Agent  
-- Incremental data loading strategy (CDC strategy)   
-- Performance indexing and partitioning  
-- Cloud deployment (Azure SQL / Synapse)
-- CI/CD pipeline integration 
 
 ---
 
