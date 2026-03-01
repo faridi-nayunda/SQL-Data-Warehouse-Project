@@ -1,260 +1,184 @@
-# SQL-Data-Warehouse-Project
-# 🏗️ Modern SQL Data Warehouse  
-### Implementing Medallion Architecture (Bronze 🥉 | Silver 🥈 | Gold 🥇)
+# 🏗️ Modern SQL Data Warehouse Project
+
+## 📌 Overview
+
+This project demonstrates the design and implementation of a modern **SQL Server Data Warehouse**. It covers the complete data warehousing lifecycle — from raw data ingestion to dimensional modeling and analytical reporting.
+
+The goal of this project is to transform raw operational data into a structured, analytics-ready data warehouse that supports business intelligence and data-driven decision-making.
 
 ---
 
-## 📌 Project Overview
+## 🎯 Objectives
 
-This project demonstrates the design and implementation of a **Modern Data Warehouse** using **Microsoft SQL Server** and the **Medallion Architecture** pattern.
-
-The system transforms raw source data into structured, analytics-ready datasets using a layered approach:
-
-- 🥉 **Bronze Layer** – Raw data ingestion  
-- 🥈 **Silver Layer** – Cleaned and standardized data  
-- 🥇 **Gold Layer** – Business-ready dimensional models  
-
-The objective is to build a scalable, maintainable, and analytics-driven data platform that supports reporting and business intelligence.
+- Design a scalable data warehouse solution  
+- Implement ETL (Extract, Transform, Load) processes  
+- Apply dimensional modeling (Star Schema)  
+- Build fact and dimension tables  
+- Enable analytical queries and reporting  
+- Optimize performance for large datasets  
 
 ---
 
-## 🎯 Project Goals
+## 🏛️ Architecture
 
-- Design a layered data architecture using Medallion principles  
-- Implement ETL processes using T-SQL  
-- Apply data cleaning and transformation logic  
-- Build a Star Schema (Fact & Dimension tables)  
-- Enable analytics-ready datasets  
-- Demonstrate modern data engineering best practices  
-
----
-
-## 🏛️ Architecture Overview
+This project follows the **Medallion Architecture (Bronze–Silver–Gold)** approach to structure data transformation in layers.
 
 
-Source Systems
+Source Data
 ↓
-🥉 Bronze Layer (Raw Data Storage)
+Bronze Layer (Raw Data)
 ↓
-🥈 Silver Layer (Cleaned & Transformed Data)
+Silver Layer (Cleaned & Transformed Data)
 ↓
-🥇 Gold Layer (Star Schema & Aggregations)
+Gold Layer (Data Warehouse - Star Schema)
 ↓
-BI / Reporting / Analytics
+Analytics / Reporting
+
+
+### 🥉 Bronze Layer
+- Stores raw data as received from source systems  
+- Minimal or no transformations  
+- Acts as a historical source of truth  
+
+### 🥈 Silver Layer
+- Cleans and validates data  
+- Standardizes formats and data types  
+- Applies transformation logic and business rules  
+
+### 🥇 Gold Layer
+- Contains fact and dimension tables  
+- Implements Star Schema design  
+- Optimized for analytical queries and reporting  
+
+This layered approach improves maintainability, scalability, and data quality management.
+
+---
+
+## 🛠️ Technologies Used
+
+- Microsoft SQL Server  
+- T-SQL  
+- SQL Server Management Studio (SSMS)  
+- SQL-based ETL processes  
+- Dimensional Modeling (Star Schema)  
+
+---
+
+## 📊 Data Modeling
+
+The warehouse is designed using **Dimensional Modeling principles**.
+
+### 🔹 Fact Tables
+- Store measurable business metrics  
+- Contain foreign keys referencing dimension tables  
+
+Example:
+
+Fact_Sales
+
+Sale_ID
+Date_Key
+Customer_Key
+Product_Key
+Amount
+Quantity
+
+
+### 🔹 Dimension Tables
+- Store descriptive attributes  
+- Enable slicing and dicing of data  
+
+Example:
+
+Dim_Customer
+
+Customer_Key
+Customer_Name
+City
+Region
 
 
 ---
 
-# 🥉 Bronze Layer – Raw Data
+## 🔄 ETL Process
 
-### Purpose
-Store raw data exactly as received from source systems.
+The ETL pipeline includes:
 
-### Characteristics
-- No business transformations applied  
-- Preserves original schema  
-- Acts as single source of truth  
-- Enables reprocessing if needed  
+1. Extracting raw data into the Bronze layer  
+2. Cleaning and validating records in the Silver layer  
+3. Transforming data types and formats  
+4. Handling missing values and duplicates  
+5. Loading structured data into fact and dimension tables (Gold layer)  
+6. Maintaining referential integrity  
 
-### Example Tables
-- `bronze_sales`
-- `bronze_customers`
-- `bronze_products`
+All transformations were implemented using T-SQL.
 
 ---
 
-# 🥈 Silver Layer – Clean & Structured Data
+## 📈 Sample Analytical Queries
 
-### Purpose
-Improve data quality and prepare datasets for modeling.
+Examples of business insights generated:
 
-### Transformations Applied
-- Data type standardization  
-- Null handling  
-- Duplicate removal  
-- Data validation rules  
-- Business logic enforcement  
-- Derived columns  
-
-### Example Tables
-- `silver_sales`
-- `silver_customers`
-- `silver_products`
-
-This layer ensures consistency and reliability before loading into analytical models.
+- Total sales by region  
+- Monthly revenue trends  
+- Top-performing products  
+- Customer segmentation analysis  
+- Revenue contribution by category  
 
 ---
 
-# 🥇 Gold Layer – Business-Ready Warehouse
+## 🚀 Key Features
 
-### Purpose
-Provide structured, analytics-ready data using dimensional modeling.
-
-### Design Approach
-The Gold layer follows the **Star Schema** design:
-
-- ⭐ Fact Tables (measurable events)
-- 📘 Dimension Tables (descriptive attributes)
-- 📊 Aggregated Views (KPIs & summaries)
+✔️ End-to-end data warehouse implementation  
+✔️ Medallion layered architecture  
+✔️ Star schema design  
+✔️ Surrogate key generation  
+✔️ Data transformation & cleansing  
+✔️ Business-ready analytics queries  
+✔️ Scalable and modular structure  
 
 ---
 
-## 📊 Data Model
+## 📂 Project Structure
 
-### Fact Table Example
 
-```sql
-CREATE TABLE Fact_Sales (
-    sale_key INT PRIMARY KEY,
-    date_key INT,
-    customer_key INT,
-    product_key INT,
-    quantity INT,
-    total_amount DECIMAL(12,2)
-);
-Dimension Table Example
-CREATE TABLE Dim_Customer (
-    customer_key INT PRIMARY KEY,
-    customer_id INT,
-    customer_name VARCHAR(100),
-    city VARCHAR(50),
-    region VARCHAR(50),
-    customer_segment VARCHAR(50)
-);
-🔄 ETL Process
-
-The ETL workflow was implemented entirely in SQL Server using T-SQL.
-
-Step 1 – Extract
-
-Load raw source data into Bronze tables.
-
-Step 2 – Transform
-
-Clean and standardize data into Silver tables:
-
-Validate fields
-
-Apply business rules
-
-Remove inconsistencies
-
-Step 3 – Load
-
-Populate Fact and Dimension tables in Gold layer.
-
-Step 4 – Serve
-
-Create views and aggregated queries for reporting.
-
-📈 Example Analytical Queries
-
-Total revenue by region
-
-Monthly sales trend analysis
-
-Top 10 products by revenue
-
-Customer segmentation insights
-
-Revenue contribution by product category
-
-🛠️ Technologies Used
-
-Microsoft SQL Server
-
-T-SQL
-
-SQL Server Management Studio (SSMS)
-
-Medallion Architecture
-
-Dimensional Modeling (Star Schema)
-
-Data Warehousing Concepts
-
-📂 Project Structure
 /data
 /scripts
-    ├── 01_bronze_layer.sql
-    ├── 02_silver_layer.sql
-    ├── 03_gold_layer.sql
-    ├── 04_fact_tables.sql
-    ├── 05_dimension_tables.sql
-    ├── 06_views.sql
+├── create_tables.sql
+├── bronze_layer.sql
+├── silver_layer.sql
+├── gold_layer.sql
+├── fact_tables.sql
+├── dimension_tables.sql
+└── analytics_queries.sql
 /diagrams
 README.md
-🚀 Key Features
 
-✔️ Medallion Architecture Implementation
 
-✔️ Structured Layered Data Flow
+---
 
-✔️ Data Cleaning & Transformation
+## 🧠 Skills Demonstrated
 
-✔️ Star Schema Modeling
+- Data Warehouse Architecture  
+- SQL Development  
+- ETL Design & Implementation  
+- Dimensional Modeling  
+- Query Optimization  
+- Business Intelligence Concepts  
 
-✔️ Surrogate Key Implementation
+---
 
-✔️ Business-Ready Analytical Models
+## 📌 Future Improvements
 
-✔️ Scalable & Maintainable Design
+- Integration with Power BI  
+- Automation using SQL Server Agent  
+- Incremental data loading strategy  
+- Performance indexing and partitioning  
+- Cloud deployment (Azure SQL / Synapse)  
 
-🧠 Skills Demonstrated
+---
 
-Data Warehouse Architecture Design
+## 👤 Author
 
-ETL Development
-
-Data Modeling
-
-SQL Query Optimization
-
-Data Transformation & Cleansing
-
-Business Intelligence Foundations
-
-🔐 Data Quality & Governance
-
-Enforced referential integrity
-
-Applied validation constraints
-
-Structured naming conventions
-
-Layer separation for maintainability
-
-Reproducible transformation logic
-
-🔮 Future Enhancements
-
-Incremental loading strategy
-
-Indexing & performance tuning
-
-Automation using SQL Server Agent
-
-Power BI dashboard integration
-
-Cloud deployment (Azure SQL / Synapse)
-
-CI/CD pipeline integration
-
-📌 Business Value
-
-This project demonstrates how raw operational data can be transformed into a reliable analytics platform that enables:
-
-Data-driven decision making
-
-KPI monitoring
-
-Performance tracking
-
-Trend analysis
-
-Executive reporting
-
-👤 Author
-
-Faridi Nayunda
-Data Engineering | Analytics
+**Faridi Nayunda**  
+Data Engineering | Data Analytics
