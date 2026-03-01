@@ -104,26 +104,36 @@ Region
 
 The ETL pipeline includes:
 
-1. Extracting raw data into the Bronze layer  
-2. Cleaning and validating records in the Silver layer  
-3. Transforming data types and formats  
-4. Handling missing values and duplicates  
-5. Loading structured data into fact and dimension tables (Gold layer)  
-6. Maintaining referential integrity  
+### 1️⃣ Extract
+- Extracting raw data into the Bronze layer   
+- Preserve source-level structure  
+
+### 2️⃣ Transform
+- Cleaning and validating records in the Silver layer  
+- Handling missing values and duplicates
+- Transforming data types and formats  
+
+### 3️⃣ Load
+- Loading structured data into fact and dimension tables (Gold layer) 
+- Maintaining referential integrity  
+- Populate Fact and Dimension tables  
+- Create reporting-ready views
 
 All transformations were implemented using T-SQL.
 
 ---
 
-## 📈 Sample Analytical Queries
+## 📈 Business Value Delivered
 
-Examples of business insights generated:
+The warehouse enables:
 
-- Total sales by region  
-- Monthly revenue trends  
-- Top-performing products  
-- Customer segmentation analysis  
-- Revenue contribution by category  
+- Revenue trend analysis  
+- Regional performance tracking  
+- Product performance insights  
+- Customer segmentation  
+- KPI reporting  
+
+The solution transforms raw transactional data into decision-support analytics. 
 
 ---
 
@@ -159,7 +169,7 @@ README.md
 
 ## 🧠 Skills Demonstrated
 
-- Data Warehouse Architecture  
+- Data Warehouse Architecture Design  
 - SQL Development  
 - ETL Design & Implementation  
 - Dimensional Modeling  
@@ -172,9 +182,10 @@ README.md
 
 - Integration with Power BI  
 - Automation using SQL Server Agent  
-- Incremental data loading strategy  
+- Incremental data loading strategy (CDC strategy)   
 - Performance indexing and partitioning  
-- Cloud deployment (Azure SQL / Synapse)  
+- Cloud deployment (Azure SQL / Synapse)
+- CI/CD pipeline integration 
 
 ---
 
